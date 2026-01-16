@@ -29,6 +29,15 @@ exports.update = (req, res) =>{
     const updated = User.update(id, { name, email })
     if(!update) return res.status(404).send('User not found')
 
-    res.status(200).json(updated)
-    
+    res.status(200).json(updated)    
+}
+
+exports.remove = (req, res) =>{
+    const id = Number(req.params.id)
+
+    const removed = User.remove(id)
+
+    if(!removed) return res.status(404).json({error: "User not found"})
+
+    res.status(204).json({message: "User removed with sucess"})
 }
